@@ -98,7 +98,7 @@ CREATE TABLE products (
 );
 ```
 
-**categories***
+**categories**
 ```sql
 CREATE TABLE categories (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
@@ -114,7 +114,7 @@ CREATE INDEX idx_products_active ON products(is_active);
 CREATE INDEX idx_products_name ON products(name);
 ```
 
-**Inventory Service**
+### 🔹 Inventory Service
 
 ```sql
 
@@ -140,7 +140,7 @@ CREATE TABLE order_processed (
 );
 ```
 
-**Order Service**
+### 🔹 Order Service
 
 ```sql
 
@@ -171,7 +171,7 @@ CREATE TABLE order_items (
 );
 ```
 
-**Payment Service**
+### 🔹 Payment Service
 ```sql
 CREATE TABLE payments (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
