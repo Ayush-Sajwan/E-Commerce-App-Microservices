@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: payment-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/payment_schema
+    username: app1
+    password: app1
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+    jpa:
+      hibernate:
+        ddl-auto: none
+      show-sql: true
+      properties:
+        hibernate:
+          format_sql: true
+
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      spring.json.add.type.headers: true
+      retries: 3                       # retry on failure
+      properties:
+        spring.json.trusted.packages: "*"
+
+server:
+  port: 8090
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    client:
+      serviceUrl:
+        defaultZone: http://localhost:8761
+
+security:
+  secret: OBITO-IS-MADARA-123456789123456789123456789
+
+kafka-event:
+  payment-failed-topic: PAYMENT-FAILED
+  payment-success-topic: PAYMENT-SUCCESS

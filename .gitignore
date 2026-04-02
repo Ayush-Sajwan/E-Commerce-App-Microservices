@@ -1,0 +1,33 @@
+# Build files
+target/
+build/
+out/
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+
+# Env / secrets
+.env
+*.env
+
+
+# Compiled files
+*.class
+
+# Temp files
+*.swp
+*.tmp
+
+# Coverage / reports
+coverage/

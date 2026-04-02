@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: user-authentication-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/users
+    username: app1
+    password: app1
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+    jpa:
+      hibernate:
+        ddl-auto: none   # validate | update | create | create-drop
+      show-sql: true
+      properties:
+        hibernate:
+          format_sql: true
+
+  security:
+    user:
+      name: admin
+      password: admin
+
+server:
+  port: 8081
+
+jwt:
+  secret: OBITO-IS-MADARA-123456789123456789123456789
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    client:
+      serviceUrl:
+        defaultZone: http://localhost:8761

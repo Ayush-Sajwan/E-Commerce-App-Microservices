@@ -1,0 +1,64 @@
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: product-service
+              uri: lb://PRODUCT-SERVICE
+              predicates:
+                - Path=/product/**
+                - Method=GET,PATCH,POST
+
+            - id: user-authentication-service
+              uri: lb://USER-AUTHENTICATION-SERVICE
+              predicates:
+                - Path=/user-auth/**
+                - Method=POST,GET
+              filters:
+                - StripPrefix=1
+
+            - id: inventory-service
+              uri: lb://INVENTORY-SERVICE
+              predicates:
+                - Path=/inventory/**
+                - Method=GET,PATCH,POST
+
+            - id: order-service
+              uri: lb://ORDER-SERVICE
+              predicates:
+                - Path=/order/**
+                - Method=GET,PATCH,POST
+
+            - id: payment-service
+              uri: lb://PAYMENT-SERVICE
+              predicates:
+                - Path=/payment/**
+                - Method=GET,PATCH,POST
+
+            - id: google-test
+              uri: https://www.google.com
+              predicates:
+                - Path=/google
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
+
+server:
+  port: 8088
+
+
+logging:
+  level:
+    org.springframework.cloud.gateway.handler.RoutePredicateHandlerMapping: TRACE
+    org.springframework.cloud.gateway: DEBUG
+
+security:
+  secret: OBITO-IS-MADARA-123456789123456789123456789
